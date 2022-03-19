@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图书推荐 on 云端漫步</title>
+    <link>https://nolanzhao.github.io/tags/%E5%9B%BE%E4%B9%A6%E6%8E%A8%E8%8D%90/</link>
+    <description>Recent content in 图书推荐 on 云端漫步</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 19 Mar 2022 19:55:42 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/%E5%9B%BE%E4%B9%A6%E6%8E%A8%E8%8D%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>推荐一本书</title>
+      <link>https://nolanzhao.github.io/post/book-recommend-ddia/</link>
+      <pubDate>Sat, 19 Mar 2022 19:55:42 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/book-recommend-ddia/</guid>
+      <description>《数据密集型系统设计》 Designing Data-Intensive Applications (O&amp;rsquo;REILLY 出版) 这是一本神书！📚。 介绍了分布式系统和数据库领域的一些技术。 YYDS！</description>
+    </item>
+    
+  </channel>
+</rss>
