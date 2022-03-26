@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>数据科学 on 云端漫步</title>
-    <link>https://nolanzhao.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/</link>
-    <description>Recent content in 数据科学 on 云端漫步</description>
+    <title>SQL on 云端漫步</title>
+    <link>https://nolanzhao.github.io/tags/sql/</link>
+    <description>Recent content in SQL on 云端漫步</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Mar 2022 21:32:39 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Pandas笔记</title>
-      <link>https://nolanzhao.github.io/post/pandas-notes/</link>
-      <pubDate>Sat, 12 Mar 2022 21:32:39 +0800</pubDate>
-      
-      <guid>https://nolanzhao.github.io/post/pandas-notes/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Fri, 04 Mar 2022 15:45:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SQL常用日期操作</title>
       <link>https://nolanzhao.github.io/post/sql-date-op/</link>
