@@ -22,7 +22,7 @@
       <pubDate>Sat, 19 Mar 2022 19:55:42 +0800</pubDate>
       
       <guid>https://nolanzhao.github.io/post/book-recommend-ddia/</guid>
-      <description>《数据密集型系统设计》 Designing Data-Intensive Applications (O&amp;rsquo;REILLY 出版) 这是一本神书！📚。 介绍了分布式系统和数据库领域的一些技术。 YYDS！</description>
+      <description>《数据密集型系统设计》 Designing Data-Intensive Applications (O&amp;rsquo;REILLY 出版) 介绍了分布式系统和数据库领域的一些技术。 (在读)</description>
     </item>
     
     <item>
@@ -32,6 +32,15 @@
       
       <guid>https://nolanzhao.github.io/post/pandas-notes/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>SQL常用日期操作</title>
+      <link>https://nolanzhao.github.io/post/sql-date-op/</link>
+      <pubDate>Fri, 04 Mar 2022 15:45:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/sql-date-op/</guid>
+      <description>查询某一天的数据 1 2 3 # create_time的格式是&amp;#34;2022-03-25 13:50:02&amp;#34; SELECT * FROM xxx WHERE to_days(create_time) = to_days(&amp;#39;2021-10-28&amp;#39;); 查询5天内的数据 1 SELECT * FROM xxx WHERE record_at &amp;gt;= DATE_SUB(CURDATE(), INTERVAL 5</description>
     </item>
     
     <item>
