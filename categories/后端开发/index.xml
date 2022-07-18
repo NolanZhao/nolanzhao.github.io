@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 19 Aug 2020 17:07:26 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Protobuf简明指南</title>
-      <link>https://nolanzhao.github.io/post/protobuf-tutorial/</link>
+      <link>https://nolanzhao.github.io/post/technology/protobuf-tutorial/</link>
       <pubDate>Wed, 19 Aug 2020 17:07:26 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/protobuf-tutorial/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/protobuf-tutorial/</guid>
       <description>&lt;p&gt;protobuf消息协议能够进一步减少消息体字节数, 从而提升系统运行效率; 接口明确定义字段, 使系统更加严谨可控.
 本文简单总结一下python操作protobuf的方法, 以供参考。&lt;/p&gt;
 &lt;p&gt;注：文中solution_pb2是由自定义的solution.proto编译的，包含Solution，ModuleCfg等对象，

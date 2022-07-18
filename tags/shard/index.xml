@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 08 Apr 2021 16:00:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/shard/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mongodb分片集试验</title>
-      <link>https://nolanzhao.github.io/post/mongo_shard/</link>
+      <link>https://nolanzhao.github.io/post/technology/mongo_shard/</link>
       <pubDate>Thu, 08 Apr 2021 16:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/mongo_shard/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/mongo_shard/</guid>
       <description>&lt;p&gt;mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
 今天用docker试验了在单机部署分片集, 记录一下方法.&lt;/p&gt;</description>
     </item>

@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/%E5%9B%BE%E5%83%8F%E6%8B%BC%E6%8E%A5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OpenCV图像拼接算法学习笔记</title>
-      <link>https://nolanzhao.github.io/post/image-stitch/</link>
+      <link>https://nolanzhao.github.io/post/technology/image-stitch/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/image-stitch/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/image-stitch/</guid>
       <description>&lt;p&gt;图片拼接是一个很常见的应用，本文总结一下通过OpenCV实现多张图的全景拼接&lt;/p&gt;</description>
     </item>
     

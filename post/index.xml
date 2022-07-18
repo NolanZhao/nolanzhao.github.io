@@ -6,78 +6,96 @@
     <description>Recent content in Posts on 云端漫步</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 19 Mar 2022 20:00:42 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Jul 2022 19:08:12 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>玉石梁穿越</title>
+      <link>https://nolanzhao.github.io/post/travel/zhangjiakou_yushiliang/</link>
+      <pubDate>Sun, 17 Jul 2022 19:08:12 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/travel/zhangjiakou_yushiliang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>东灵山徒步</title>
+      <link>https://nolanzhao.github.io/post/travel/beijing_donglingshan/</link>
+      <pubDate>Sun, 17 Jul 2022 18:57:58 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/travel/beijing_donglingshan/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>立个Flag</title>
-      <link>https://nolanzhao.github.io/post/my-first-post/</link>
+      <link>https://nolanzhao.github.io/post/technology/my-first-post/</link>
       <pubDate>Sat, 19 Mar 2022 20:00:42 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/my-first-post/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/my-first-post/</guid>
       <description>欢迎查看我的小站，在这里整理了一些技术笔记，希望对你有帮助！ 欢迎留言，技术交流，打赏支持！ 计划每周至少更新一篇。 后续会逐渐把过去多年的笔记整</description>
     </item>
     
     <item>
       <title>推荐一本书</title>
-      <link>https://nolanzhao.github.io/post/book-recommend-ddia/</link>
+      <link>https://nolanzhao.github.io/post/technology/book-recommend-ddia/</link>
       <pubDate>Sat, 19 Mar 2022 19:55:42 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/book-recommend-ddia/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/book-recommend-ddia/</guid>
       <description>《数据密集型系统设计》 Designing Data-Intensive Applications (O&amp;rsquo;REILLY 出版) 介绍了分布式系统和数据库领域的一些技术。 (在读)</description>
     </item>
     
     <item>
       <title>Pandas笔记</title>
-      <link>https://nolanzhao.github.io/post/pandas-notes/</link>
+      <link>https://nolanzhao.github.io/post/technology/pandas-notes/</link>
       <pubDate>Sat, 12 Mar 2022 21:32:39 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/pandas-notes/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/pandas-notes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SQL常用日期操作</title>
-      <link>https://nolanzhao.github.io/post/sql-date-op/</link>
+      <link>https://nolanzhao.github.io/post/technology/sql-date-op/</link>
       <pubDate>Fri, 04 Mar 2022 15:45:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/sql-date-op/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/sql-date-op/</guid>
       <description>查询某一天的数据 1 2 3 # create_time的格式是&amp;#34;2022-03-25 13:50:02&amp;#34; SELECT * FROM xxx WHERE to_days(create_time) = to_days(&amp;#39;2021-10-28&amp;#39;); 查询5天内的数据 1 SELECT * FROM xxx WHERE record_at &amp;gt;= DATE_SUB(CURDATE(), INTERVAL 5</description>
     </item>
     
     <item>
       <title>mongodb分片集试验</title>
-      <link>https://nolanzhao.github.io/post/mongo_shard/</link>
+      <link>https://nolanzhao.github.io/post/technology/mongo_shard/</link>
       <pubDate>Thu, 08 Apr 2021 16:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/mongo_shard/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/mongo_shard/</guid>
       <description>&lt;p&gt;mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
 今天用docker试验了在单机部署分片集, 记录一下方法.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Redis主从同步和哨兵</title>
-      <link>https://nolanzhao.github.io/post/redis_master_slave_sentinel/</link>
+      <link>https://nolanzhao.github.io/post/technology/redis_master_slave_sentinel/</link>
       <pubDate>Tue, 17 Nov 2020 17:11:37 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/redis_master_slave_sentinel/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/redis_master_slave_sentinel/</guid>
       <description>&lt;p&gt;Redis高可用解决方案: 主从同步+哨兵.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker构建mongo Replica Set</title>
-      <link>https://nolanzhao.github.io/post/mongo_replica_set/</link>
+      <link>https://nolanzhao.github.io/post/technology/mongo_replica_set/</link>
       <pubDate>Tue, 17 Nov 2020 10:58:16 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/mongo_replica_set/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/mongo_replica_set/</guid>
       <description>&lt;p&gt;Mongo replica set方案可以在多台机器同步数据, 如果PRIMARY机器挂掉, 其他SECONDARY机器可以选出一台新的PRIMARY,
 流量可以切换到新机器, 从而实现高可用.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Protobuf简明指南</title>
-      <link>https://nolanzhao.github.io/post/protobuf-tutorial/</link>
+      <link>https://nolanzhao.github.io/post/technology/protobuf-tutorial/</link>
       <pubDate>Wed, 19 Aug 2020 17:07:26 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/protobuf-tutorial/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/protobuf-tutorial/</guid>
       <description>&lt;p&gt;protobuf消息协议能够进一步减少消息体字节数, 从而提升系统运行效率; 接口明确定义字段, 使系统更加严谨可控.
 本文简单总结一下python操作protobuf的方法, 以供参考。&lt;/p&gt;
 &lt;p&gt;注：文中solution_pb2是由自定义的solution.proto编译的，包含Solution，ModuleCfg等对象，
@@ -86,10 +104,10 @@
     
     <item>
       <title>图的拓扑排序和判断是否有环</title>
-      <link>https://nolanzhao.github.io/post/graph_topolgical_sort/</link>
+      <link>https://nolanzhao.github.io/post/technology/graph_topolgical_sort/</link>
       <pubDate>Wed, 12 Aug 2020 18:46:31 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/graph_topolgical_sort/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/graph_topolgical_sort/</guid>
       <description>&lt;p&gt;如何判断模块间是否有循环依赖? 如何根据依赖关系对图进行排序?
 这就涉及到图的算法: 判断DAG(有向无环图, Directed acyclic graph).
 本文整理两种解决方案, 见代码.&lt;/p&gt;</description>
@@ -97,19 +115,19 @@
     
     <item>
       <title>图片水印：光晕效果</title>
-      <link>https://nolanzhao.github.io/post/image-watermark/</link>
+      <link>https://nolanzhao.github.io/post/technology/image-watermark/</link>
       <pubDate>Thu, 26 Mar 2020 17:16:55 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/image-watermark/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/image-watermark/</guid>
       <description>&lt;p&gt;一个线性渐变的光晕，opencv cpp实现&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>图像平移矩阵</title>
-      <link>https://nolanzhao.github.io/post/image-transform/</link>
+      <link>https://nolanzhao.github.io/post/technology/image-transform/</link>
       <pubDate>Mon, 23 Sep 2019 16:16:07 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/image-transform/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/image-transform/</guid>
       <description>&lt;p&gt;图像乘以单应性矩阵H进行透视变换时
 H为单位矩阵，变换后的图和原图一致
 H[0][3]的值代表右移尺度
@@ -118,10 +136,10 @@ H[1][3]的值代表下移尺度&lt;/p&gt;</description>
     
     <item>
       <title>OpenCV图像拼接算法学习笔记</title>
-      <link>https://nolanzhao.github.io/post/image-stitch/</link>
+      <link>https://nolanzhao.github.io/post/technology/image-stitch/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/image-stitch/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/image-stitch/</guid>
       <description>&lt;p&gt;图片拼接是一个很常见的应用，本文总结一下通过OpenCV实现多张图的全景拼接&lt;/p&gt;</description>
     </item>
     
