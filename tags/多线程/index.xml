@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on 云端漫步</title>
+    <link>https://nolanzhao.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on 云端漫步</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 08 Aug 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多线程调接口存数据</title>
+      <link>https://nolanzhao.github.io/post/technology/pypi-package-multi-request/</link>
+      <pubDate>Mon, 08 Aug 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/technology/pypi-package-multi-request/</guid>
+      <description>&lt;p&gt;封装了一个PyPI包. &lt;a href=&#34;https://pypi.org/project/multi-request&#34;&gt;multi-request&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;安装: pip install multi-request&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nolanzhao/multi_request&#34;&gt;源码&lt;/a&gt; 已开源，更多功能可自行修改。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

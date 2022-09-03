@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>axios on 云端漫步</title>
+    <link>https://nolanzhao.github.io/tags/axios/</link>
+    <description>Recent content in axios on 云端漫步</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 03 Sep 2022 14:55:27 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/axios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>文件下载功能的前后端实现</title>
+      <link>https://nolanzhao.github.io/post/technology/web-dev-file-download/</link>
+      <pubDate>Sat, 03 Sep 2022 14:55:27 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/technology/web-dev-file-download/</guid>
+      <description>&lt;p&gt;如题，记录一个简单实现。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

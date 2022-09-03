@@ -18,19 +18,19 @@
     
     <item>
       <title>文件下载功能的前后端实现</title>
-      <link>https://nolanzhao.github.io/post/technology/web_dev_file_download/</link>
+      <link>https://nolanzhao.github.io/post/technology/web-dev-file-download/</link>
       <pubDate>Sat, 03 Sep 2022 14:55:27 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/web_dev_file_download/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/web-dev-file-download/</guid>
       <description>&lt;p&gt;如题，记录一个简单实现。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>多线程调接口存数据</title>
-      <link>https://nolanzhao.github.io/post/technology/pypi_package_multi_request/</link>
+      <link>https://nolanzhao.github.io/post/technology/pypi-package-multi-request/</link>
       <pubDate>Mon, 08 Aug 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/pypi_package_multi_request/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/pypi-package-multi-request/</guid>
       <description>&lt;p&gt;封装了一个PyPI包. &lt;a href=&#34;https://pypi.org/project/multi-request&#34;&gt;multi-request&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;安装: pip install multi-request&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/nolanzhao/multi_request&#34;&gt;源码&lt;/a&gt; 已开源，更多功能可自行修改。&lt;/p&gt;</description>
@@ -92,29 +92,29 @@
     
     <item>
       <title>mongodb分片集试验</title>
-      <link>https://nolanzhao.github.io/post/technology/mongo_shard/</link>
+      <link>https://nolanzhao.github.io/post/technology/mongo-shard/</link>
       <pubDate>Thu, 08 Apr 2021 16:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/mongo_shard/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/mongo-shard/</guid>
       <description>&lt;p&gt;mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
 今天用docker试验了在单机部署分片集, 记录一下方法.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Redis主从同步和哨兵</title>
-      <link>https://nolanzhao.github.io/post/technology/redis_master_slave_sentinel/</link>
+      <link>https://nolanzhao.github.io/post/technology/redis-master-slave-sentinel/</link>
       <pubDate>Tue, 17 Nov 2020 17:11:37 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/redis_master_slave_sentinel/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/redis-master-slave-sentinel/</guid>
       <description>&lt;p&gt;Redis高可用解决方案: 主从同步+哨兵.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用docker构建mongo Replica Set</title>
-      <link>https://nolanzhao.github.io/post/technology/mongo_replica_set/</link>
+      <link>https://nolanzhao.github.io/post/technology/mongo-replica-set/</link>
       <pubDate>Tue, 17 Nov 2020 10:58:16 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/mongo_replica_set/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/mongo-replica-set/</guid>
       <description>&lt;p&gt;Mongo replica set方案可以在多台机器同步数据, 如果PRIMARY机器挂掉, 其他SECONDARY机器可以选出一台新的PRIMARY,
 流量可以切换到新机器, 从而实现高可用.&lt;/p&gt;</description>
     </item>
@@ -133,10 +133,10 @@
     
     <item>
       <title>图的拓扑排序和判断是否有环</title>
-      <link>https://nolanzhao.github.io/post/technology/graph_topolgical_sort/</link>
+      <link>https://nolanzhao.github.io/post/technology/graph-topolgical-sort/</link>
       <pubDate>Wed, 12 Aug 2020 18:46:31 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/technology/graph_topolgical_sort/</guid>
+      <guid>https://nolanzhao.github.io/post/technology/graph-topolgical-sort/</guid>
       <description>&lt;p&gt;如何判断模块间是否有循环依赖? 如何根据依赖关系对图进行排序?
 这就涉及到图的算法: 判断DAG(有向无环图, Directed acyclic graph).
 本文整理两种解决方案, 见代码.&lt;/p&gt;</description>
