@@ -22,7 +22,7 @@
       <pubDate>Sat, 03 Sep 2022 14:55:27 +0800</pubDate>
       
       <guid>https://nolanzhao.github.io/post/technology/web_dev_file_download/</guid>
-      <description>前端使用 axios 发送请求： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 downloadFile() { var params = { &amp;#34;a&amp;#34;: this.a, &amp;#34;b&amp;#34;: this.b, } // 可选参数，作为queryString 传给后端 axios.get(&amp;#39;/api/download&amp;#39;, { params: params, responseType:&amp;#39;blob&amp;#39; }).then(res</description>
+      <description>&lt;p&gt;如题，记录一个简单实现。&lt;/p&gt;</description>
     </item>
     
     <item>
