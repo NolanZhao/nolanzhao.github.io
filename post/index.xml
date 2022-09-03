@@ -17,6 +17,17 @@
     </item>
     
     <item>
+      <title>多线程调接口存数据</title>
+      <link>https://nolanzhao.github.io/post/technology/pypi_package_multi_request/</link>
+      <pubDate>Mon, 08 Aug 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/technology/pypi_package_multi_request/</guid>
+      <description>&lt;p&gt;封装了一个PyPI包. &lt;a href=&#34;https://pypi.org/project/multi-request&#34;&gt;multi-request&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;安装: pip install multi-request&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nolanzhao/multi_request&#34;&gt;源码&lt;/a&gt; 已开源，更多功能可自行修改。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Trie: 前缀树(字典树)</title>
       <link>https://nolanzhao.github.io/post/technology/implement-trie-prefix-tree/</link>
       <pubDate>Tue, 26 Jul 2022 23:13:00 +0800</pubDate>
