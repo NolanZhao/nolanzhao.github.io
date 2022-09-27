@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQLAlchemy on 云端漫步</title>
+    <link>https://nolanzhao.github.io/tags/sqlalchemy/</link>
+    <description>Recent content in SQLAlchemy on 云端漫步</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 27 Sep 2022 17:57:58 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/tags/sqlalchemy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQLAlchemy简明指南</title>
+      <link>https://nolanzhao.github.io/post/technology/sqlalchemy-notes/</link>
+      <pubDate>Tue, 27 Sep 2022 17:57:58 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/technology/sqlalchemy-notes/</guid>
+      <description>&lt;p&gt;SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
