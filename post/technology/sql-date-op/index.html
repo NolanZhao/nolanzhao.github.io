@@ -49,7 +49,7 @@
 <meta itemprop="name" content="SQL常用日期操作">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-03-04T15:45:00+08:00" />
 <meta itemprop="dateModified" content="2022-03-04T15:45:00+08:00" />
-<meta itemprop="wordCount" content="142">
+<meta itemprop="wordCount" content="81">
 <meta itemprop="keywords" content="SQL," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SQL常用日期操作"/>
 <meta name="twitter:description" content=""/>
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"> 数据科学 </a>
             </div>
-          <span class="more-meta"> 约 142 字 </span>
+          <span class="more-meta"> 约 81 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -159,10 +159,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># create_time的格式是&#34;2022-03-25 13:50:02&#34;
-
-SELECT * FROM xxx WHERE to_days(create_time) = to_days(&#39;2021-10-28&#39;);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span><span class="w"> </span><span class="n">create_time的格式是</span><span class="s2">&#34;2022-03-25 13:50:02&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">xxx</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">create_time</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="s1">&#39;2021-10-28&#39;</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>查询5天内的数据</li>
@@ -172,8 +172,8 @@ SELECT * FROM xxx WHERE to_days(create_time) = to_days(&#39;2021-10-28&#39;);
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SELECT * FROM xxx WHERE record_at &gt;= DATE_SUB(CURDATE(), INTERVAL 5 DAY);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">xxx</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">record_at</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="n">CURDATE</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">DAY</span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>昨天的数据</li>
@@ -183,8 +183,8 @@ SELECT * FROM xxx WHERE to_days(create_time) = to_days(&#39;2021-10-28&#39;);
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SELECT * FROM xxx WHERE to_days(now()) -  to_days(create_time) = 1;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">xxx</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">now</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w">  </span><span class="n">to_days</span><span class="p">(</span><span class="n">create_time</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>前天的数据</li>
@@ -196,10 +196,10 @@ SELECT * FROM xxx WHERE to_days(create_time) = to_days(&#39;2021-10-28&#39;);
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SELECT * FROM xxx 
-WHERE to_days(now()) - to_days(create_time) &lt; 2 
-AND to_days(now()) - to_days(create_time) &gt; 1;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">xxx</span><span class="w"> 
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">now</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">create_time</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> 
+</span><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">now</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">to_days</span><span class="p">(</span><span class="n">create_time</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>日期字段提取</li>
@@ -213,12 +213,12 @@ AND to_days(now()) - to_days(create_time) &gt; 1;
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">SELECT EXTRACT(YEAR FROM OrderDate) AS OrderYear,
-EXTRACT(MONTH FROM OrderDate) AS OrderMonth,
-EXTRACT(DAY FROM OrderDate) AS OrderDay
-FROM Orders
-WHERE OrderId=1
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrderYear</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrderMonth</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">DAY</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrderDay</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">OrderId</span><span class="o">=</span><span class="mi">1</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

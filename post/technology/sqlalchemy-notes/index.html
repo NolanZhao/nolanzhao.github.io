@@ -50,8 +50,8 @@
 <meta itemprop="name" content="SQLAlchemy简明指南">
 <meta itemprop="description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."><meta itemprop="datePublished" content="2022-09-27T17:57:58+08:00" />
 <meta itemprop="dateModified" content="2022-09-27T17:57:58+08:00" />
-<meta itemprop="wordCount" content="355">
-<meta itemprop="keywords" content="SQLAlchemy,ORM," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="531">
+<meta itemprop="keywords" content="SQLAlchemy,ORM,Alembic," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SQLAlchemy简明指南"/>
 <meta name="twitter:description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."/>
 
@@ -137,8 +137,8 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 约 355 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 531 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -167,6 +167,15 @@
             <li><a href="#限制返回字段">限制返回字段</a></li>
             <li><a href="#创建新元素">创建新元素</a></li>
             <li><a href="#删除">删除</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-alembic">5. Alembic</a>
+          <ul>
+            <li><a href="#51-安装">5.1 安装</a></li>
+            <li><a href="#52-初始化">5.2 初始化</a></li>
+            <li><a href="#53-配置">5.3 配置</a></li>
+            <li><a href="#54-migration">5.4 migration</a></li>
+            <li><a href="#55-更多命令参考">5.5 更多命令参考</a></li>
           </ul>
         </li>
       </ul>
@@ -419,6 +428,82 @@
 <span class="n">s</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="5-alembic">5. Alembic</h2>
+<p>Alembic是 SQLAlchemy 官方出的一个迁移工具.</p>
+<h3 id="51-安装">5.1 安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">pip install alembic
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="52-初始化">5.2 初始化</h3>
+<p>alembic init alembic</p>
+<p>会生成一个 <code>alembic 目录</code>和一个 <code>alembic.ini</code></p>
+<h3 id="53-配置">5.3 配置</h3>
+<h4 id="修改-alembicini">修改 <code>alembic.ini</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sqlalchemy.url = mysql+mysqldb://root:PASSWORD@127.0.0.1:3306/demo?charset=utf8
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="修改-alembicenvpy">修改 <code>alembic/env.py</code></h4>
+<p>target_metadata = None 修改为自己的 ModelBase 的 metadata</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">from models import ModelBase 
+<span class="nv">target_metadata</span> <span class="o">=</span> ModelBase.metadata
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="54-migration">5.4 migration</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">alembic revision --autogenerate -m <span class="s2">&#34;init&#34;</span>  <span class="c1"># 参数是描述信息</span>
+alembic upgrade head  <span class="c1"># 同步最新的修改到数据库</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>修改模型定义之后, 可生成新的migration文件, 文件保存在 alembic/versions .</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">alembic revision --autogenerate -m <span class="s2">&#34;modify&#34;</span>
+alembic upgrade head
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要降级</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">alembic downgrade head
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="55-更多命令参考">5.5 更多命令参考</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash">alembic -h
+</code></pre></td></tr></table>
+</div>
 </div>
     </div>
 
@@ -458,6 +543,7 @@
       <div class="post-tags">
           <a href="/tags/sqlalchemy/">SQLAlchemy</a>
           <a href="/tags/orm/">ORM</a>
+          <a href="/tags/alembic/">Alembic</a>
           </div>
       <nav class="post-nav">
         

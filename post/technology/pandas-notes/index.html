@@ -167,7 +167,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.drop_duplicates(subset=&#39;user_id&#39;, inplace=True)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="2-条件筛选某一列不在另一个表">2. 条件筛选：某一列不在另一个表</h4>
@@ -176,7 +176,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[~df.user_id.isin(df1.user_id.to_list())]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">to_list</span><span class="p">())]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="3-条件筛选某一列值为空">3. 条件筛选：某一列值为空</h4>
@@ -185,7 +185,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[df[&#39;credit_amount&#39;].isnull()]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;credit_amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="4-合并俩表左连接">4. 合并俩表（左连接）</h4>
@@ -194,7 +194,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df2 = df0.merge(df1, on=&#39;user_id&#39;, how=&#39;left&#39;)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df2</span> <span class="o">=</span> <span class="n">df0</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="5-导出到csv">5. 导出到csv</h4>
@@ -203,7 +203,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.to_csv(&#39;xxx.csv&#39;, index=False)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;xxx.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="6-多条件筛选">6. 多条件筛选</h4>
@@ -212,7 +212,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[(df[&#39;A&#39;] &gt; df[&#39;B&#39;]) &amp; (df[&#39;created_at&#39;] &lt; df[&#39;10月31日&#39;])]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;created_at&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10月31日&#39;</span><span class="p">])]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="7-修改列名points为score">7. 修改列名points为score</h4>
@@ -221,7 +221,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.rename(columns={&#39;points&#39;: &#39;score&#39;})
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="s1">&#39;score&#39;</span><span class="p">})</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="8-修改索引">8. 修改索引</h4>
@@ -230,7 +230,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.rename(index={0: &#39;firstEntry&#39;, 1: &#39;secondEntry&#39;})
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;firstEntry&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;secondEntry&#39;</span><span class="p">})</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="9-修改axis">9. 修改axis</h4>
@@ -239,7 +239,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.rename_axis(&#34;wines&#34;, axis=&#39;rows&#39;).rename_axis(&#34;fields&#34;, axis=&#39;columns&#39;)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="s2">&#34;wines&#34;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="s2">&#34;fields&#34;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="10-合并表格">10. 合并表格</h4>
@@ -248,7 +248,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">pd.concat([canadian_youtube, british_youtube])
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">canadian_youtube</span><span class="p">,</span> <span class="n">british_youtube</span><span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="11-将某个字段单列出来">11. 将某个字段单列出来</h4>
@@ -258,8 +258,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">例：res 字段是json， 值为{&#39;status&#39;: 0, msg: &#39;ok&#39;}
-df[&#39;status&#39;] = df.apply(lambda df: json.loads(df[&#39;res&#39;])[&#34;status&#34;], axis=1)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">例</span><span class="err">：</span><span class="n">res</span> <span class="n">字段是json</span><span class="err">，</span> <span class="n">值为</span><span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">}</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;res&#39;</span><span class="p">])[</span><span class="s2">&#34;status&#34;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="12-判断字段a是否有nan">12. 判断字段a是否有NaN</h4>
@@ -268,7 +268,7 @@ df[&#39;status&#39;] = df.apply(lambda df: json.loads(df[&#39;res&#39;])[&#34;st
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[&#39;a&#39;].isnull().sum() &gt; 0
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="13-聚合排序">13. 聚合排序</h4>
@@ -280,9 +280,9 @@ df[&#39;status&#39;] = df.apply(lambda df: json.loads(df[&#39;res&#39;])[&#34;st
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">A = pd.DataFrame(df.groupby([&#39;user_id&#39;, &#39;sku&#39;])[[&#39;user_id&#39;, &#39;sku&#39;]].size().sort_values(ascending=False))
-A.columns = [&#39;user_beh_count&#39;]  # 修改列索引名称
-beh_user = beh_user.reset_index()
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;sku&#39;</span><span class="p">])[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;sku&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">A</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_beh_count&#39;</span><span class="p">]</span>  <span class="c1"># 修改列索引名称</span>
+<span class="n">beh_user</span> <span class="o">=</span> <span class="n">beh_user</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="14-读取excel">14. 读取Excel</h4>
@@ -293,9 +293,9 @@ beh_user = beh_user.reset_index()
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">f = pd.ExcelFile(&#39;文件名.xlsx&#39;)
-d = f.parse(&#39;SHEET名称&#39;)
-d.head()
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s1">&#39;文件名.xlsx&#39;</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;SHEET名称&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="15-遍历">15. 遍历</h4>
@@ -307,10 +307,10 @@ d.head()
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">data = pd.read_csv(&#39;mock_data/bj_test_data.csv&#39;).sample(100)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mock_data/bj_test_data.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
-for idx, row in data.iterrows():
-    pass
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">pass</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="16-条件筛选--选择字段">16. 条件筛选 &amp; 选择字段</h4>
@@ -319,7 +319,7 @@ for idx, row in data.iterrows():
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">A.loc[A[&#39;flag&#39;] == True, (&#39;用户ID&#39;, &#39;用户金额&#39;)]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">A</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;用户ID&#39;</span><span class="p">,</span> <span class="s1">&#39;用户金额&#39;</span><span class="p">)]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="17-nan处理">17. nan处理</h4>
@@ -328,7 +328,7 @@ for idx, row in data.iterrows():
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[&#39;result&#39;] = df[&#39;result&#39;].apply(lambda x: &#39;&#39; if str(x)==&#39;nan&#39; else x)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;nan&#39;</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="18-筛选某一字段的取值">18. 筛选某一字段的取值</h4>
@@ -338,8 +338,8 @@ for idx, row in data.iterrows():
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[&#39;flag&#39;] = df[&#39;result&#39;].apply(lambda x: 1 if x in (&#39;hello&#39;, &#39;world&#39;) else 0)
-df[df[&#39;flag&#39;]==1]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="19-a的user_id在b的user_id中">19. A的user_id在B的user_id中</h4>
@@ -349,8 +349,8 @@ df[df[&#39;flag&#39;]==1]
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">A[&#39;flag&#39;] = A.apply(lambda x: True if x[&#39;user_id&#39;] in B.user_id.values else False, axis=1)
-A[A[&#39;flag&#39;] == True]
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">A</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">B</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">values</span> <span class="k">else</span> <span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">A</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="20-空值转换">20. 空值转换</h4>
@@ -359,7 +359,7 @@ A[A[&#39;flag&#39;] == True]
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[&#34;查看时间&#34;] = df[&#34;查看时间&#34;].apply(lambda x: str(x) if not pd.isnull(x) else &#34;&#34;)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="21-类型转换">21. 类型转换</h4>
@@ -368,7 +368,7 @@ A[A[&#39;flag&#39;] == True]
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df[&#39;合同号&#39;] = df[&#39;合同号&#39;].apply(int)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;合同号&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;合同号&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="22-一列数据加到另一列list类型的数据中">22. 一列数据加到另一列List类型的数据中</h4>
@@ -377,7 +377,7 @@ A[A[&#39;flag&#39;] == True]
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">df.apply(lambda x: x[&#34;查看时间列表&#34;].append(x[&#34;查看时间&#34;]) if not pd.isnull(x[&#34;查看时间&#34;]) and x[&#34;查看时间&#34;] != &#34;&#34; and x[&#34;查看时间&#34;] not in x[&#34;查看时间列表&#34;] else x[&#34;查看时间列表&#34;], axis=1)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间列表&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">])</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">])</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间&#34;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间列表&#34;</span><span class="p">]</span> <span class="k">else</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;查看时间列表&#34;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="23-判断字段存在">23. 判断字段存在</h4>
@@ -386,7 +386,7 @@ A[A[&#39;flag&#39;] == True]
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#39;xxx&#39; in df.columns
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="s1">&#39;xxx&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="24-筛选特定类型的字段名">24. 筛选特定类型的字段名</h4>
@@ -395,7 +395,7 @@ A[A[&#39;flag&#39;] == True]
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">list(df[feature_names].select_dtypes(include=[&#39;int&#39;,&#39;float&#39;,&#39;int32&#39;,&#39;float32&#39;,&#39;int64&#39;,&#39;float64&#39;]).columns.values)
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">,</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span><span class="s1">&#39;float64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div>

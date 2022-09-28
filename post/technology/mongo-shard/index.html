@@ -159,13 +159,17 @@
         <li><a href="#3-创建mongos">3. 创建mongos</a></li>
         <li><a href="#4-初始化副本集">4. 初始化副本集</a>
           <ul>
-            <li></li>
+            <li><a href="#rs0">rs0</a></li>
+            <li><a href="#rs1">rs1</a></li>
+            <li><a href="#cfg">cfg</a></li>
           </ul>
         </li>
         <li><a href="#5-初始化mongos">5. 初始化mongos</a></li>
         <li><a href="#6-命令参考">6 命令参考</a>
           <ul>
-            <li></li>
+            <li><a href="#创建索引">创建索引</a></li>
+            <li><a href="#开启分片功能">开启分片功能</a></li>
+            <li><a href="#查看分片功能">查看分片功能</a></li>
           </ul>
         </li>
       </ul>
@@ -322,7 +326,7 @@ sharding:
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="4-初始化副本集">4. 初始化副本集</h2>
-<h4 id="rs0">rs0</h4>
+<h3 id="rs0">rs0</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -333,7 +337,7 @@ sharding:
 rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="s2">&#34;rs0&#34;</span>, members: <span class="o">[</span> <span class="o">{</span> _id: 0, host: <span class="s2">&#34;172.24.29.128:27018&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 1, host: <span class="s2">&#34;172.24.29.128:27019&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 2, host: <span class="s2">&#34;172.24.29.128:27020&#34;</span> <span class="o">}</span> <span class="o">]</span> <span class="o">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="rs1">rs1</h4>
+</div><h3 id="rs1">rs1</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -344,7 +348,7 @@ rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="
 rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="s2">&#34;rs1&#34;</span>, members: <span class="o">[</span> <span class="o">{</span> _id: 0, host: <span class="s2">&#34;172.24.29.128:27021&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 1, host: <span class="s2">&#34;172.24.29.128:27022&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 2, host: <span class="s2">&#34;172.24.29.128:27023&#34;</span> <span class="o">}</span> <span class="o">]</span> <span class="o">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="cfg">cfg</h4>
+</div><h3 id="cfg">cfg</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -371,7 +375,7 @@ db.runCommand<span class="o">({</span> addshard : <span class="s2">&#34;rs1/172.
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="6-命令参考">6 命令参考</h2>
-<h4 id="创建索引">创建索引</h4>
+<h3 id="创建索引">创建索引</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -382,7 +386,7 @@ db.runCommand<span class="o">({</span> addshard : <span class="s2">&#34;rs1/172.
 db.users.createIndex<span class="o">({</span> 字段名:1 <span class="o">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="开启分片功能">开启分片功能</h4>
+</div><h3 id="开启分片功能">开启分片功能</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -393,7 +397,7 @@ db.users.createIndex<span class="o">({</span> 字段名:1 <span class="o">})</sp
 db.runCommand<span class="o">({</span> shardcollection : <span class="s2">&#34;数据库名.集合名&#34;</span>, key : <span class="o">{</span>字段名:1<span class="o">}</span> <span class="o">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="查看分片功能">查看分片功能</h4>
+</div><h3 id="查看分片功能">查看分片功能</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
