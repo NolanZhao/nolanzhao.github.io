@@ -50,7 +50,7 @@
 <meta itemprop="name" content="SQLAlchemy简明指南">
 <meta itemprop="description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."><meta itemprop="datePublished" content="2022-09-27T17:57:58+08:00" />
 <meta itemprop="dateModified" content="2022-09-27T17:57:58+08:00" />
-<meta itemprop="wordCount" content="646">
+<meta itemprop="wordCount" content="638">
 <meta itemprop="keywords" content="SQLAlchemy,ORM,Alembic," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SQLAlchemy简明指南"/>
 <meta name="twitter:description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."/>
@@ -137,7 +137,7 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 约 646 字 </span>
+          <span class="more-meta"> 约 638 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -307,7 +307,7 @@
 <span class="n">s</span> <span class="o">=</span> <span class="n">scoped_session</span><span class="p">(</span><span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>当一个线程调用时, ScopedSession工厂会查找registry, 看看之前是否已经为此线程创建过 session,
+</div><p>当一个线程调用时, ScopedSession工厂会查找 registry, 看看之前是否已经为此线程创建过 session,
 如果有直接返回这个 session, 没有的话创建一个新的 session, 并注册到 registry.</p>
 <h3 id="传递参数">传递参数</h3>
 <div class="highlight"><div class="chroma">
