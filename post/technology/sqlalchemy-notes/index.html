@@ -50,7 +50,7 @@
 <meta itemprop="name" content="SQLAlchemy简明指南">
 <meta itemprop="description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."><meta itemprop="datePublished" content="2022-09-27T17:57:58+08:00" />
 <meta itemprop="dateModified" content="2022-09-27T17:57:58+08:00" />
-<meta itemprop="wordCount" content="638">
+<meta itemprop="wordCount" content="642">
 <meta itemprop="keywords" content="SQLAlchemy,ORM,Alembic," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SQLAlchemy简明指南"/>
 <meta name="twitter:description" content="SQLAlchemy 是一个很强大的 Python ORM 工具, 这里介绍一下最常用的功能, 以供参考."/>
@@ -137,7 +137,7 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 约 638 字 </span>
+          <span class="more-meta"> 约 642 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -158,6 +158,7 @@
             <li><a href="#传递参数">传递参数</a></li>
             <li><a href="#查询一个元素">查询一个元素</a></li>
             <li><a href="#查询列表">查询列表</a></li>
+            <li><a href="#排序">排序</a></li>
             <li><a href="#模糊查询">模糊查询</a></li>
             <li><a href="#多条件">多条件</a></li>
             <li><a href="#计数">计数</a></li>
@@ -342,6 +343,15 @@
 <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">==</span> <span class="mi">20</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">==</span> <span class="mi">20</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">==</span> <span class="mi">20</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="排序">排序</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="模糊查询">模糊查询</h3>
