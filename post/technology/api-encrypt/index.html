@@ -49,7 +49,7 @@
 <meta itemprop="name" content="API加密和签名">
 <meta itemprop="description" content="API加密和签名简介和示例代码"><meta itemprop="datePublished" content="2022-10-22T16:30:00+08:00" />
 <meta itemprop="dateModified" content="2022-10-22T16:30:00+08:00" />
-<meta itemprop="wordCount" content="2026">
+<meta itemprop="wordCount" content="2037">
 <meta itemprop="keywords" content="RSA,AES,加密和签名," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="API加密和签名"/>
 <meta name="twitter:description" content="API加密和签名简介和示例代码"/>
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"> 后端开发 </a>
             </div>
-          <span class="more-meta"> 约 2026 字 </span>
+          <span class="more-meta"> 约 2037 字 </span>
           <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
@@ -639,18 +639,18 @@ Bob: publicKey2, privateKey2</p>
 <ol>
 <li>
 <p>用自己的私钥 privateKey1 解密 rsaEncryptedAesKey, 得到 aesKey</p>
-<p><code>😈 rsa加解密 确保了 aesKey的机密传输</code></p>
+<p><code>😈 rsa加解密 确保了 aesKey的机密传输.</code></p>
 </li>
 <li>
 <p>用 aesKey 解密 aesEncryptedParams, 得到 params.</p>
-<p><code>😈 aes加解密 确保了params机密传输</code></p>
+<p><code>😈 aes加解密 确保了params机密传输.</code></p>
 </li>
 <li>
 <p>用 params 和 收到的 timestamp计算 md5data, 方法同 Bob 的Step 2</p>
 </li>
 <li>
 <p>用 Bob 的公钥 publicKey2 对 md5data 验签, 成功则证明一切正常.</p>
-<p><code>😈 确保了数据真实完整, 验证了数据源身份</code></p>
+<p><code>😈 签名验签 可以确认数据源身份, 确保了真实性和数据完整性.</code></p>
 </li>
 </ol>
 <h3 id="附">附:</h3>
