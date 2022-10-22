@@ -13,7 +13,7 @@
       <pubDate>Sat, 22 Oct 2022 16:30:00 +0800</pubDate>
       
       <guid>https://nolanzhao.github.io/post/technology/api-encrypt/</guid>
-      <description>&lt;p&gt;加密和签名是开发设计敏感信息的API的必要步骤.
+      <description>&lt;p&gt;加密和签名是开发涉及敏感信息的API的必要步骤.
 本文提供一个 Python 版的示例程序.&lt;/p&gt;</description>
     </item>
     
