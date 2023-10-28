@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>API加密和签名 - 云端漫步</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Zhao Xu" /><meta name="description" content="API加密和签名简介和示例代码" /><meta name="keywords" content="RSA, AES, md5, base64, 加密和签名" />
+
+
+<meta name="baidu-site-verification" content="code-z7J4FjZlre" />
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="https://nolanzhao.github.io/technology/technology/api-encrypt/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4d635c451ea7848147a8dac378eddce1c1b60e8b4d250380cd8a46f617805a1d.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="API加密和签名" />
+<meta property="og:description" content="API加密和签名简介和示例代码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nolanzhao.github.io/technology/technology/api-encrypt/" /><meta property="article:section" content="technology" />
+<meta property="article:published_time" content="2022-10-22T16:30:00+08:00" />
+<meta property="article:modified_time" content="2022-10-22T16:30:00+08:00" />
+
+<meta itemprop="name" content="API加密和签名">
+<meta itemprop="description" content="API加密和签名简介和示例代码"><meta itemprop="datePublished" content="2022-10-22T16:30:00+08:00" />
+<meta itemprop="dateModified" content="2022-10-22T16:30:00+08:00" />
+<meta itemprop="wordCount" content="2041">
+<meta itemprop="keywords" content="RSA,AES,加密和签名," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="API加密和签名"/>
+<meta name="twitter:description" content="API加密和签名简介和示例代码"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">🗺 云端漫步</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">简介</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">🗺 云端漫步</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">简介</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>加密和签名是开发涉及敏感信息的API的必要步骤.
+本文提供一个 Python 版的示例程序.</p>
+<h2 id="0-相关概念">0. 相关概念</h2>
+<h3 id="加密">加密</h3>
+<p><strong>加密</strong> 可以保证数据的<code>机密性</code>.</p>
+<p>常见加密算法包括 AES 对称加密, 和 RSA 非对称机密.</p>
+<ul>
+<li>
+<p>AES (Advanced Encryption Standard) 加解密使用同一个密钥.</p>
+</li>
+<li>
+<p>RSA 有<code>公钥</code>和<code>私钥</code>, 成对使用. 用对方的公钥加密, 对方收到之后用他的私钥解密.</p>
+</li>
+</ul>
+<h3 id="数字签名">数字签名</h3>
+<p><strong>数字签名</strong> 可以对数据的<code>完整性(Integrity)</code>进行验证; 也能数据源进行<code>身份验证</code>, 保证<code>真实性(authenticity)</code>.
+对报文加盖时间戳,添加序列号再签名, 也可实现防重放攻击(Replay Attack).</p>
+<ul>
+<li>
+<p>如果报文有被篡改或伪造, 无法通过验签, 因为不同的报文用同一个私钥签名的结果是不一样的. 这样就保证了数据的<code>完整性</code>.</p>
+</li>
+<li>
+<p>如果能用你的<code>公钥</code>验签, 就证明这是你的签名, 而不是别人的. 即<code>不可抵赖</code>. 因为你签名用的<code>私钥</code>只有你所拥有, 唯一的验签方法是用你的<code>公钥</code>,
+你的公钥也无法验证别人的签名. 只需证明该公钥是你之前分发的(可通过第三方证明), 就能证明签名是你的.</p>
+</li>
+<li>
+<p>如果别人用其他方式(非你的私钥)伪造一个签名, 你的公钥是无法验签的, 这就保证了你的签名<code>不可伪造</code>.</p>
+</li>
+<li>
+<p>重放攻击是黑客抓包拿到你的请求参数, 然后拿去请求服务器. 如果我们对每次请求加上时间戳, 对比相同序列号的请求的时间戳, 看是否重复, 就可发现重放事件. 对报文和时间戳序列号一起签名, 是为了防止黑客修改.</p>
+</li>
+</ul>
+<p>RSA 算法也可以用于数字签名, 用自己的私钥签名, 把公钥分发给对方, 用于验签.</p>
+<p>通常对原始报文取摘要进行签名.</p>
+<p>😈: <strong><code>公钥加密, 私钥解密. 私钥签名, 公钥验签</code></strong>.</p>
+<h3 id="散列">散列</h3>
+<p><strong>哈希摘要(散列)算法</strong></p>
+<p>常见的摘要算法有 <code>MD5</code>, <code>SHA1</code>, <code>SHA256</code>等. 他们可以对原始信息生成一个唯一的简短的字符串,
+这个原始信息只要有略微变化, 生成的摘要就有很大差别, 因此可以用来比对信息是否一致. 虽然有一定的碰撞概率, 但极低.</p>
+<p>有些软件包发布的时候通常会附上摘要值, 这样当你下载到本地之后, 可以通过计算它的摘要值与公布的值对比, 来确保下载包是完整的,
+并且没有被篡改, 即<code>完整性(Integrity)</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="s2">&#34;hello world&#34;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="s1">&#39;5eb63bbbe01eeed093cb22bb8f5acdc3&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># On MAC</span>
+➜  ~ <span class="nb">echo</span> -n <span class="s2">&#34;hello world&#34;</span> <span class="p">|</span> md5
+5eb63bbbe01eeed093cb22bb8f5acdc3
+
+<span class="c1"># on Linux</span>
+➜  ~ <span class="nb">echo</span> -n <span class="s2">&#34;hello world&#34;</span> <span class="p">|</span> md5sum
+5eb63bbbe01eeed093cb22bb8f5acdc3
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="编码">编码</h3>
+<p><strong>base64编码</strong></p>
+<p>编码, 就是将原始信息映射为另一串信息. 和加密不同的是, 它只是将信息进行了简单的转换, 任何知道这种算法的人都能轻易还原, 不涉及到密钥问题.</p>
+<p>base64是一种很常见的编码方式, 它可以把任意信息(文本或二进制)映射到只使用部分ASCII字符的文本. 对于有些只支持文本的信道, 可以将二进制信息(比如图片), 用base64编码之后传输.</p>
+<p>Python 提供了 <code>base64</code>包, 可供使用. Linux下也有命令可使用.</p>
+<p>Python 示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="s2">&#34;hello world&#34;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="sa">b</span><span class="s1">&#39;aGVsbG8gd29ybGQ=&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;aGVsbG8gd29ybGQ=&#39;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="sa">b</span><span class="s1">&#39;hello world&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Linux命令示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># 字符串编解码</span>
+➜  ~ <span class="nb">echo</span> -n <span class="s2">&#34;hello world&#34;</span> <span class="p">|</span> base64
+<span class="nv">aGVsbG8gd29ybGQ</span><span class="o">=</span>
+➜  ~
+➜  ~ <span class="nb">echo</span> -n <span class="s2">&#34;aGVsbG8gd29ybGQ=&#34;</span> <span class="p">|</span> base64 -d
+hello world%
+
+<span class="c1"># 😈 echo 后加 -n 参数表示 不输出换行, 不带它编码结果会不同!!!</span>
+
+<span class="c1"># 文件编解码</span>
+➜  ~ base64 文件路径
+➜  ~ base64 -d 文件路径
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="1-数字签名">1. 数字签名</h2>
+<p>代码中用到的 <code>Crypto</code> 包的安装方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="n">pip</span> <span class="n">install</span> <span class="n">pycryptodome</span><span class="o">==</span><span class="mf">3.9.0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rsa-签名">RSA 签名</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Signature</span> <span class="kn">import</span> <span class="n">PKCS1_v1_5</span> <span class="k">as</span> <span class="n">PKCS1_signature</span>
+<span class="kn">from</span> <span class="nn">Crypto.Hash</span> <span class="kn">import</span> <span class="n">MD5</span><span class="p">,</span> <span class="n">SHA1</span><span class="p">,</span> <span class="n">SHA256</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">privateKey</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    签名
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># from Crypto.Signature import PKCS1_v1_5 as PKCS1_signature</span>
+    <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">privateKey</span><span class="p">)</span>
+    <span class="n">signer</span> <span class="o">=</span> <span class="n">PKCS1_signature</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">)</span>
+
+    <span class="c1">## 哈希算法可选: MD5, SHA1, SHA256</span>
+    <span class="c1"># #1. SIGNATURE_ALGORITHM: &#34;MD5withRSA&#34;</span>
+    <span class="c1"># hash_obj = MD5.new(data.encode(&#39;utf-8&#39;))</span>
+
+    <span class="c1">#2. SIGNATURE_ALGORITHM: &#34;SHA1withRSA&#34;</span>
+    <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">SHA1</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+    <span class="c1"># #3. SIGNATURE_ALGORITHM: &#34;SHA256withRSA&#34;</span>
+    <span class="c1"># hash_obj = SHA256.new(data.encode(&#39;utf-8&#39;))</span>
+
+    <span class="n">signature</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">signer</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">signature</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rsa-验签">RSA 验签</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Signature</span> <span class="kn">import</span> <span class="n">PKCS1_v1_5</span> <span class="k">as</span> <span class="n">PKCS1_signature</span>
+<span class="kn">from</span> <span class="nn">Crypto.Hash</span> <span class="kn">import</span> <span class="n">MD5</span><span class="p">,</span> <span class="n">SHA1</span><span class="p">,</span> <span class="n">SHA256</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">publicKey</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    验签
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># from Crypto.Signature import PKCS1_v1_5 as PKCS1_signature</span>
+    <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">publicKey</span><span class="p">)</span>
+    <span class="n">verifier</span> <span class="o">=</span> <span class="n">PKCS1_signature</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">SHA1</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">verifier</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-对称加密算法">2. 对称加密算法</h2>
+<h3 id="aes-加密">AES 加密</h3>
+<p>生成随机密钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+
+<span class="k">def</span> <span class="nf">generateAesKey</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    生成 AES 密钥: 16 位随机字符(字母大小写 + 数字)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>定义一个函数, 对加解密内容补足 16 位, 防止报错.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    补足 16 位
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>加密</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    AES 加密
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+    <span class="n">encrypt_aes</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+    <span class="n">encrypted_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">encodebytes</span><span class="p">(</span><span class="n">encrypt_aes</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">encrypted_text</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="aes-解密算法">AES 解密算法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    AES 解密
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">parse</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+    <span class="n">base64_decrypted</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">decodebytes</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="n">decrypted_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">aes</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">base64_decrypted</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decrypted_text</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-非对称加密算法">3. 非对称加密算法</h2>
+<h3 id="rsa-加密">RSA 加密</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">PKCS1_v1_5</span> <span class="k">as</span> <span class="n">PKCS1_cipher</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">encryptRSA</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">publicKey</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    RSA 加密
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># from Crypto.Cipher import PKCS1_v1_5 as PKCS1_cipher</span>
+    <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">publicKey</span><span class="p">)</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">PKCS1_cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">)</span>
+    <span class="n">encrypted_text</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">encrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rsa-解密">RSA 解密</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+<span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">PKCS1_v1_5</span> <span class="k">as</span> <span class="n">PKCS1_cipher</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="k">def</span> <span class="nf">decryptRSA</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">privateKey</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    RSA 解密
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># from Crypto.Cipher import PKCS1_v1_5 as PKCS1_cipher</span>
+    <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="n">privateKey</span><span class="p">)</span>
+    <span class="n">cipher</span> <span class="o">=</span> <span class="n">PKCS1_cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">rsa_key</span><span class="p">)</span>
+    <span class="n">decrypted_text</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decrypted_text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-api-加密和签名步骤">4. API 加密和签名步骤</h2>
+<p>Alice 和 Bob 两人通信, Bob 发起请求, Alice 验证请求.</p>
+<p>他们的密钥对分别为:</p>
+<p>Alice: publicKey1, privateKey1</p>
+<p>Bob: publicKey2, privateKey2</p>
+<h3 id="bob-发起请求">Bob 发起请求:</h3>
+<ol>
+<li>
+<p>先创建一个字典, 加上时间戳字段: {&ldquo;params&rdquo;: params, &ldquo;timestamp&rdquo;: timestamp}</p>
+</li>
+<li>
+<p>排序后序列化成一个新字符串, 格式为 params=xxx&amp;timestamp=1666421907.729505, 计算它的 md5摘要值 md5data</p>
+</li>
+<li>
+<p>用自己的私钥 privateKey2 对 md5data签名, 得到 signature</p>
+</li>
+<li>
+<p>随机生成一个 AES密钥 aesKey, 对 params加密, 得到 aesEncryptedParams</p>
+</li>
+<li>
+<p>用对方的公钥 publicKey1 对 aesKey 进行 RSA 加密, 得到 rsaEncryptedAesKey</p>
+</li>
+<li>
+<p>构造参数 {&ldquo;params&rdquo;: aesEncryptedParams, &ldquo;timestamp&rdquo;: timestamp, &ldquo;sign&rdquo;: signature, &ldquo;key&rdquo;: rsaEncryptedAesKey}, 发送请求.</p>
+</li>
+</ol>
+<h3 id="alice-验证请求">Alice 验证请求:</h3>
+<ol>
+<li>
+<p>用自己的私钥 privateKey1 解密 rsaEncryptedAesKey, 得到 aesKey</p>
+<p><code>😈 rsa加解密 确保了 aesKey的机密传输.</code></p>
+</li>
+<li>
+<p>用 aesKey 解密 aesEncryptedParams, 得到 params.</p>
+<p><code>😈 aes加解密 确保了params机密传输.</code></p>
+</li>
+<li>
+<p>用 params 和 收到的 timestamp计算 md5data, 方法同 Bob 的Step 2</p>
+</li>
+<li>
+<p>用 Bob 的公钥 publicKey2 对 md5data 验签, 成功则证明一切正常.</p>
+<p><code>😈 签名验签 可以确认数据源身份, 确保了真实性和数据完整性.</code></p>
+</li>
+</ol>
+<h3 id="附">附</h3>
+<p><a href="https://github.com/nolanzhao/API_Encrypt">完整示例代码</a></p>
+<p><em>git clone <a href="mailto:git@github.com">git@github.com</a>:nolanzhao/API_Encrypt.git</em></p>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'nolanzhao-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:z_nolan@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/lazycat_zzz" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/xu-zhao-43232b100/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nolanzhao" class="iconfont icon-github" title="github"></a>
+  <a href="https://nolanzhao.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+    
+    
+    <span>Zhao Xu</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?179ac1229b9397472cde80b6d807776c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

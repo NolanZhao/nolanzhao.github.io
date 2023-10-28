@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>mongodb分片集试验 - 云端漫步</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Zhao Xu" /><meta name="description" content="mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题. 今天用docker试验了在单机部署分片集, 记录一下方法.
+" /><meta name="keywords" content="技术笔记, Nolan Zhao, Zhao Xu, 云端漫步, 赵旭, Python, Go, 后端, 算法" />
+
+
+<meta name="baidu-site-verification" content="code-z7J4FjZlre" />
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="https://nolanzhao.github.io/technology/technology/mongo-shard/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4d635c451ea7848147a8dac378eddce1c1b60e8b4d250380cd8a46f617805a1d.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="mongodb分片集试验" />
+<meta property="og:description" content="mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
+今天用docker试验了在单机部署分片集, 记录一下方法." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nolanzhao.github.io/technology/technology/mongo-shard/" /><meta property="article:section" content="technology" />
+<meta property="article:published_time" content="2021-04-08T16:00:00+08:00" />
+<meta property="article:modified_time" content="2021-04-08T16:00:00+08:00" />
+
+<meta itemprop="name" content="mongodb分片集试验">
+<meta itemprop="description" content="mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
+今天用docker试验了在单机部署分片集, 记录一下方法."><meta itemprop="datePublished" content="2021-04-08T16:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-04-08T16:00:00+08:00" />
+<meta itemprop="wordCount" content="1072">
+<meta itemprop="keywords" content="MongoDB,Shard," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="mongodb分片集试验"/>
+<meta name="twitter:description" content="mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
+今天用docker试验了在单机部署分片集, 记录一下方法."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">🗺 云端漫步</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">简介</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">🗺 云端漫步</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">简介</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>mongodb分片集可以将数据分布到多台机器多个mongo实例中, 实现横向扩展, 解决单机容量不足的问题.
+今天用docker试验了在单机部署分片集, 记录一下方法.</p>
+<h2 id="0-简介">0. 简介</h2>
+<p>Shard和ConfigServer本质上都是mongod实例, 配置文件中sharding.clusterRole不同
+这里, 我们创建Shard启动2个副本集(rs0, rs1), 每个副本集有3个实例, 创建ConfigServer启动1个副本集(cfg), 包含3个实例.
+即, 共有9个mongod实例, 其中6个用于Shard, 3个用于ConfigServer.</p>
+<h2 id="1-创建shard副本集shardsvr">1. 创建Shard副本集(shardsvr)</h2>
+<p>创建三个mongod实例(27018, 27019, 27020)作为副本集rs0</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir -p /home/nolan/mongo/m_27018
+</code></pre></td></tr></table>
+</div>
+</div><p>在上述目录添加配置文件mongod.conf, 内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">net:
+    port: <span class="m">27018</span>
+    bindIp: 0.0.0.0    
+replication:
+    replSetName: rs0
+sharding:
+    clusterRole: shardsvr
+</code></pre></td></tr></table>
+</div>
+</div><p>启动三个实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -p 27018:27018 --restart always -v /home/nolan/mongo/m_27018:/data -v /home/nolan/mongo/m_27018/db:/data/db --name m_27018 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27019:27019 --restart always -v /home/nolan/mongo/m_27019:/data -v /home/nolan/mongo/m_27019/db:/data/db --name m_27019 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27020:27020 --restart always -v /home/nolan/mongo/m_27020:/data -v /home/nolan/mongo/m_27020/db:/data/db --name m_27020 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+</code></pre></td></tr></table>
+</div>
+</div><p>m_27019, m_27020方法同上, 在相应配置中修改端口</p>
+<p>同上, 再创建三个mongod实例(27021, 27022, 27023)作为副本集rs1 (注意在相应配置中修改端口和replSetName)</p>
+<p>启动三个实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -p 27021:27021 --restart always -v /home/nolan/mongo/m_27021:/data -v /home/nolan/mongo/m_27021/db:/data/db --name m_27021 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27022:27022 --restart always -v /home/nolan/mongo/m_27022:/data -v /home/nolan/mongo/m_27022/db:/data/db --name m_27022 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27023:27023 --restart always -v /home/nolan/mongo/m_27023:/data -v /home/nolan/mongo/m_27023/db:/data/db --name m_27023 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-创建configserver副本集configsvr">2. 创建ConfigServer副本集(configsvr)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir -p /home/nolan/mongo/c_27024
+</code></pre></td></tr></table>
+</div>
+</div><p>在上述目录添加配置文件mongod.conf, 内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">net:
+    port: <span class="m">27024</span>
+    bindIp: 0.0.0.0    
+replication:
+    replSetName: cfg
+sharding:
+    clusterRole: configsvr
+</code></pre></td></tr></table>
+</div>
+</div><p>c_27025, c_27026方法同上, 在相应配置中修改端口</p>
+<p>启动三个实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -p 27024:27024 --restart always -v /home/nolan/mongo/c_27024:/data -v /home/nolan/mongo/c_27024/db:/data/db --name c_27024 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27025:27025 --restart always -v /home/nolan/mongo/c_27025:/data -v /home/nolan/mongo/c_27025/db:/data/db --name c_27025 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+docker run -p 27026:27026 --restart always -v /home/nolan/mongo/c_27026:/data -v /home/nolan/mongo/c_27026/db:/data/db --name c_27026 -d mongo mongod -f /data/mongod.conf --bind_ip_all
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-创建mongos">3. 创建mongos</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/home/nolan/mongo/s_27027
+</code></pre></td></tr></table>
+</div>
+</div><p>在上述目录添加配置文件mongos.conf, 内容如下, 注意修改IP为所在机器内网IP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">net:
+    port: <span class="m">27027</span>
+    bindIp: 0.0.0.0    
+sharding:
+    configDB: cfg/172.24.29.128:27024,172.24.29.128:27025,172.24.29.128:27026
+</code></pre></td></tr></table>
+</div>
+</div><p>启动mongos</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run -p 27027:27027 --restart always -v /home/nolan/mongo/s_27027:/data -v /home/nolan/mongo/s_27027/db:/data/db --name s_27027 -d mongo mongos -f /data/mongos.conf --bind_ip_all
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-初始化副本集">4. 初始化副本集</h2>
+<h3 id="rs0">rs0</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">exec</span> -it m_27018 mongo --port <span class="m">27018</span>
+rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="s2">&#34;rs0&#34;</span>, members: <span class="o">[</span> <span class="o">{</span> _id: 0, host: <span class="s2">&#34;172.24.29.128:27018&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 1, host: <span class="s2">&#34;172.24.29.128:27019&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 2, host: <span class="s2">&#34;172.24.29.128:27020&#34;</span> <span class="o">}</span> <span class="o">]</span> <span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="rs1">rs1</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">exec</span> -it m_27021 mongo --port <span class="m">27021</span>
+rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="s2">&#34;rs1&#34;</span>, members: <span class="o">[</span> <span class="o">{</span> _id: 0, host: <span class="s2">&#34;172.24.29.128:27021&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 1, host: <span class="s2">&#34;172.24.29.128:27022&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 2, host: <span class="s2">&#34;172.24.29.128:27023&#34;</span> <span class="o">}</span> <span class="o">]</span> <span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="cfg">cfg</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">exec</span> -it c_27024 mongo --port <span class="m">27024</span>
+rs.initiate<span class="o">(</span> <span class="o">{</span> _id : <span class="s2">&#34;cfg&#34;</span>, members: <span class="o">[</span> <span class="o">{</span> _id: 0, host: <span class="s2">&#34;172.24.29.128:27024&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 1, host: <span class="s2">&#34;172.24.29.128:27025&#34;</span> <span class="o">}</span>, <span class="o">{</span> _id: 2, host: <span class="s2">&#34;172.24.29.128:27026&#34;</span> <span class="o">}</span> <span class="o">]</span> <span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-初始化mongos">5. 初始化mongos</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker <span class="nb">exec</span> -it s_27027 mongo --port <span class="m">27027</span>
+use admin
+db.runCommand<span class="o">({</span> addshard : <span class="s2">&#34;rs0/172.24.29.128:27018,172.24.29.128:27019,172.24.29.128:27020&#34;</span>, name:<span class="s2">&#34;shard0&#34;</span><span class="o">})</span> 
+db.runCommand<span class="o">({</span> addshard : <span class="s2">&#34;rs1/172.24.29.128:27021,172.24.29.128:27022,172.24.29.128:27023&#34;</span>, name:<span class="s2">&#34;shard1&#34;</span><span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6-命令参考">6 命令参考</h2>
+<h3 id="创建索引">创建索引</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">use 数据库名
+db.users.createIndex<span class="o">({</span> 字段名:1 <span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="开启分片功能">开启分片功能</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">db.runCommand<span class="o">({</span> enablesharding : <span class="s2">&#34;数据库名&#34;</span> <span class="o">})</span>
+db.runCommand<span class="o">({</span> shardcollection : <span class="s2">&#34;数据库名.集合名&#34;</span>, key : <span class="o">{</span>字段名:1<span class="o">}</span> <span class="o">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="查看分片功能">查看分片功能</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sh.status<span class="o">()</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+  </div>
+</article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'nolanzhao-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:z_nolan@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/lazycat_zzz" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/xu-zhao-43232b100/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nolanzhao" class="iconfont icon-github" title="github"></a>
+  <a href="https://nolanzhao.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+    
+    
+    <span>Zhao Xu</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?179ac1229b9397472cde80b6d807776c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
