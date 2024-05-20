@@ -126,75 +126,6 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/technology/book-recommend-ddia/">推荐一本书</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2022年03月19日 </span>
-      <div class="post-category">
-          <a href="/categories/%E5%85%B6%E4%BB%96/"> 其他 </a>
-          </div>
-        <span class="more-meta"> 约 42 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      《数据密集型系统设计》 Designing Data-Intensive Applications (O&rsquo;REILLY 出版) 介绍了分布式系统和数据库领域的一些技术。 (在读)
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/book-recommend-ddia/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/technology/pandas-notes/">Pandas笔记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2022年03月12日 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"> 数据科学 </a>
-          </div>
-        <span class="more-meta"> 约 793 字 </span>
-        <span class="more-meta"> 预计阅读 2 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/pandas-notes/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/technology/sql-date-op/">SQL常用日期操作</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2022年03月04日 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"> 数据科学 </a>
-          </div>
-        <span class="more-meta"> 约 81 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      
-    </div>
-    <div class="read-more">
-      <a href="/post/technology/sql-date-op/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/technology/mongo-shard/">mongodb分片集试验</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2021年04月08日 </span>
@@ -236,6 +167,79 @@
     </div>
     <div class="read-more">
       <a href="/post/technology/redis-master-slave-sentinel/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/technology/mongo-replica-set/">使用docker构建mongo Replica Set</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020年11月17日 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+          </div>
+        <span class="more-meta"> 约 911 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Mongo replica set方案可以在多台机器同步数据, 如果PRIMARY机器挂掉, 其他SECONDARY机器可以选出一台新的PRIMARY,
+流量可以切换到新机器, 从而实现高可用.</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/mongo-replica-set/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/technology/protobuf-tutorial/">Protobuf简明指南</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020年08月19日 </span>
+      <div class="post-category">
+          <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"> 后端开发 </a>
+          </div>
+        <span class="more-meta"> 约 450 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>protobuf消息协议能够进一步减少消息体字节数, 从而提升系统运行效率; 接口明确定义字段, 使系统更加严谨可控.
+本文简单总结一下python操作protobuf的方法, 以供参考。</p>
+<p>注：文中solution_pb2是由自定义的solution.proto编译的，包含Solution，ModuleCfg等对象，
+以此为例总结了protobuf的几种方法的使用。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/protobuf-tutorial/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/technology/graph-topolgical-sort/">图的拓扑排序和判断是否有环</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020年08月12日 </span>
+      <div class="post-category">
+          <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
+          </div>
+        <span class="more-meta"> 约 438 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>见代码. 摘录自 <a href="http://blog.jupo.org/2012/04/06/topological-sorting-acyclic-directed-graphs/">blog.jupo.org</a></p>
+    </div>
+    <div class="read-more">
+      <a href="/post/technology/graph-topolgical-sort/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
