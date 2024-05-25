@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>网络知识笔记 - 云端漫步</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Zhao Xu" /><meta name="description" content="网络代理的新技术" /><meta name="keywords" content="计算机网络" />
+
+
+<meta name="baidu-site-verification" content="code-z7J4FjZlre" />
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="https://nolanzhao.github.io/post/technology/internet-knowledge/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b3c9f7931bfc708b0eeeccc6dba60704662ff6dddfb26323453d68aeb4e7fa24.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="网络知识笔记" />
+<meta property="og:description" content="网络代理的新技术" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nolanzhao.github.io/post/technology/internet-knowledge/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-05-25T16:40:00+08:00" />
+<meta property="article:modified_time" content="2024-05-25T16:40:00+08:00" />
+
+<meta itemprop="name" content="网络知识笔记">
+<meta itemprop="description" content="网络代理的新技术"><meta itemprop="datePublished" content="2024-05-25T16:40:00+08:00" />
+<meta itemprop="dateModified" content="2024-05-25T16:40:00+08:00" />
+<meta itemprop="wordCount" content="933">
+<meta itemprop="keywords" content="计算机网络," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="网络知识笔记"/>
+<meta name="twitter:description" content="网络代理的新技术"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">云端漫步</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">简介</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">云端漫步</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">简介</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">网络知识笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024年05月25日 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"> 计算机网络 </a>
+            </div>
+          <span class="more-meta"> 约 933 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>(GPT4o整理, 仅供学习研究)</p>
+<p>关键词: <code>Xray</code>, <code>XTLS</code>, <code>VLESS协议</code>, <code>SNI</code>, <code>Reality协议</code></p>
+<p><strong>Xray</strong></p>
+<ul>
+<li>创建年份：2020年</li>
+<li>创建者：XTLS项目团队</li>
+<li>简介：Xray 是 V2Ray 的一个改进版本，旨在提供更高的性能和更强的隐蔽性。它包括了对XTLS（eXtreme Transport Layer Security）和Reality协议的支持，优化了数据加密和传输过程，使得流量更难以被检测和封锁。</li>
+</ul>
+<p><strong>VLESS协议</strong></p>
+<p>是由V2Ray项目推出的一种无状态轻量级数据传输协议。它是对VMess协议的改进，旨在提升性能和扩展性，被定义为下一代的V2Ray数据传输协议。主要特点:</p>
+<ul>
+<li>不依赖系统时间：VLESS协议不使用alterId，因此不需要保持本地计算机时间与远程服务器的时间同步​ (LinuxV2Ray)​​ (V2Fly)​。</li>
+<li>无自带加密：VLESS协议本身不自带加密，需要配合TLS等加密手段使用，确保数据传输的安全性​ (V2ray XTLS黑科技)​​ (LinuxV2Ray)​。</li>
+<li>支持分流和回落：比Nginx分流转发更简洁、高效和安全。通过回落机制，可以将流量转发到其他地址，增加协议的灵活性​ (LinuxV2Ray)​​ (V2Fly)​。</li>
+<li>性能优化：在使用TLS的情况下，VLESS比VMess更快，因为VLESS不会对数据进行加解密，减少了额外的开销​ (tlanyan)​​ (V2ray XTLS黑科技)​。</li>
+</ul>
+<p><strong>SNI (Server Name Indication)</strong></p>
+<p>是一种扩展协议，属于TLS（Transport Layer Security）协议的一部分，用于在建立加密连接（HTTPS）时，客户端向服务器指明它要访问的特定域名。SNI解决了一个重要问题：当一个服务器托管多个网站时，如何在TLS握手阶段正确选择和提供对应网站的SSL证书。</p>
+<p><strong>Reality协议</strong></p>
+<p>是由XTLS项目推出的一种新型传输协议，旨在提高网络流量的隐蔽性和安全性，特别是应对网络审查和主动探测。主要特点:</p>
+<ul>
+<li>消除TLS指纹：通过伪装成正常的TLS流量，Reality协议能够消除服务器端的TLS指纹特征，从而提高隐蔽性。</li>
+<li>前向保密性：保留了TLS协议的前向保密性，确保即使密钥泄露也无法解密之前的通信内容。</li>
+<li>无证书链攻击：避免了常规TLS可能受到的证书链攻击，提高了安全性。</li>
+<li>伪装成合法网站：可以指向合法网站，无需自己购买域名和配置TLS服务端，从而简化部署过程。</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Zhao Xu</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024年05月25日
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="../../images/reward/wechat_recv.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="../../images/reward/alipay_recv.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/learn/american_english/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">美语日常表达</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/travel/tokyo/">
+            <span class="next-text nav-default">东京都之旅</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'nolanzhao-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:z_nolan@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/lazycat_zzz" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/xu-zhao-43232b100/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nolanzhao" class="iconfont icon-github" title="github"></a>
+  <a href="https://nolanzhao.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+    
+    
+    <span>Zhao Xu</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?179ac1229b9397472cde80b6d807776c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
