@@ -6,7 +6,7 @@
     <description>Recent content on 云端漫步</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 25 May 2024 18:00:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 May 2024 16:20:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>简介</title>
       <link>https://nolanzhao.github.io/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://nolanzhao.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>读书笔记</title>
+      <link>https://nolanzhao.github.io/post/reading/reading-notes-202405/</link>
+      <pubDate>Sun, 26 May 2024 16:20:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/reading/reading-notes-202405/</guid>
+      <description>(GPT4o整理, 仅供学习研究) 随机漫步的傻瓜 https://weread.qq.com/book-detail?type=1&amp;amp;senderVid=10000968&amp;amp;v=7d9327605e10bf7d9560267 卡尔·波普尔（Karl Popper） 是20世纪著名的哲学家，他对科学哲学、政治哲学和社会哲学</description>
     </item>
     
     <item>
