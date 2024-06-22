@@ -6,7 +6,7 @@
     <description>Recent content on 云端漫步</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 16 Jun 2024 17:00:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Jun 2024 19:40:00 +0800</lastBuildDate><atom:link href="https://nolanzhao.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>简介</title>
       <link>https://nolanzhao.github.io/about/</link>
@@ -14,6 +14,25 @@
       
       <guid>https://nolanzhao.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>American English (III)</title>
+      <link>https://nolanzhao.github.io/post/learn/american_english_iii/</link>
+      <pubDate>Sat, 22 Jun 2024 19:40:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/learn/american_english_iii/</guid>
+      <description>&lt;p&gt;英语口语&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Long-arm Jurisdiction</title>
+      <link>https://nolanzhao.github.io/post/learn/domain_knowledge_long-arm_jurisdiction/</link>
+      <pubDate>Sat, 22 Jun 2024 19:20:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/learn/domain_knowledge_long-arm_jurisdiction/</guid>
+      <description>&lt;p&gt;因好奇心/无意间遇到/奇怪的/可能无用的知识&amp;hellip;
+(由GPT4o整理)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -26,6 +45,16 @@
     </item>
     
     <item>
+      <title>书单#2024</title>
+      <link>https://nolanzhao.github.io/post/reading/book-list-2024/</link>
+      <pubDate>Sun, 26 May 2024 16:30:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/reading/book-list-2024/</guid>
+      <description>&lt;p&gt;(持续更新中)&lt;/p&gt;
+&lt;p&gt;一些感兴趣的(想读)/在读/已读 的书 📚&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>读书笔记</title>
       <link>https://nolanzhao.github.io/post/reading/reading-notes-202405/</link>
       <pubDate>Sun, 26 May 2024 16:20:00 +0800</pubDate>
@@ -35,12 +64,21 @@
     </item>
     
     <item>
-      <title>美语日常表达</title>
-      <link>https://nolanzhao.github.io/post/learn/american_english/</link>
+      <title>American English (I)</title>
+      <link>https://nolanzhao.github.io/post/learn/american_english_i/</link>
       <pubDate>Sat, 25 May 2024 18:00:00 +0800</pubDate>
       
-      <guid>https://nolanzhao.github.io/post/learn/american_english/</guid>
-      <description>I think we are gonna have to&amp;hellip; 我觉得我们得&amp;hellip; I think this doesn&amp;rsquo;t change a thing. 我觉得这并没有改变什么。 If you don&amp;rsquo;t like it, we can take them back. 如果你不喜欢，我们可以退货。 Don&amp;rsquo;t say that yet, take it</description>
+      <guid>https://nolanzhao.github.io/post/learn/american_english_i/</guid>
+      <description>&lt;p&gt;英语口语&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>American English (II)</title>
+      <link>https://nolanzhao.github.io/post/learn/american_english_ii/</link>
+      <pubDate>Sat, 25 May 2024 18:00:00 +0800</pubDate>
+      
+      <guid>https://nolanzhao.github.io/post/learn/american_english_ii/</guid>
+      <description>&lt;p&gt;英语口语&lt;/p&gt;</description>
     </item>
     
     <item>
